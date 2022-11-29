@@ -1,0 +1,15 @@
+UBER EATS DB QUERIES
+Queries for the following tasks
+Get the restaurants by particular location
+
+ db.collection.aggregate([$match : {location: "TamilNadu"}])
+ db.collection.find({"address.coord" :{$lt:72.6}})
+
+All the dishes available in a particular restaurant
+db.collection.aggregate([$group:{_id:"$restaurant",dishes:{$count:{"$dishesname"}}},{$match:{}}])
+Orders delivered by a particular rider
+db.collection.aggregate([{$match:{rider.name}}])
+All the order of a particular user
+db.collectionName.aggregate([{$group:{_id:"$user",count:{$order:{}}}}])
+All the orders from a particular restaurant
+db.collectionName.aggregate([{$group:{_id:"$restaurant",count:{$order:{}}}}])

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Hello Chat
+    <div id="messages"></div>
+    <form id="form"> 
+        <input type="text" id="input" />
+        <input type="submit" />
+    </form>
+<script src="socket.io/socket.io.min.js"></script>
+    <script>
+        const socket =io()
+        const messages=document.getElementById("messages")
+        const form =document.getElementById("form")
+        const text=document.getElementById("input")
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault()
+            if(text.value){
+                socket.emit("newmessage",text.value)
+            }
+            text.value=" "
+        })
+            socket.on("newmessage",(data)=>{
+                console.log("server said",data)
+            })
+            socket.on("newmessage",(data)=>{
+                const span=document.createElement("div")
+                span.innerText=data
+                messages.appendChild(span)
+            })
+      socket.on("newuser",()=>{
+        alert("New user joined now")
+      })
+    </script>
+</body>
+</html>

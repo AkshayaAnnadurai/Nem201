@@ -1,0 +1,60 @@
+//UBER DB SCHEMA
+//You have to design the database for Uber eats. Expected Entities
+
+import mongoose from "mongoose"
+
+Users
+
+const userSchema=mongoose.Schema({
+name:{type:String,required:true},
+email:{type:String,required:true,unique:true},
+password:{type:String,required:true},
+mobile:{type:Number,required:true}
+})
+
+const Users =mongoose.model("user",userSchema)
+Restaurants
+
+const restaurantSchema=mongoose.Schema({
+name:{type:String,required:true},
+address:{type:String,required:true,unique:true},
+email:{type:String,required:true,unique:true},
+
+mobile:{type:number,required:true}
+})
+
+const Restaurants =mongoose.model("restaurant",restaurantSchema)
+Dishes
+
+const dishesSchema=mongoose.Schema({
+name:{type:String,required:true},
+variety:{type:String,required:true},
+price:{type:Number,required:true}
+rating:{type:Number,required:true}
+quantity:{type:Number,required:true,min:0,max:100}
+})
+
+const Dishes =mongoose.model("dish",dishesSchema)
+Orders
+
+const ordersSchema=mongoose.Schema({
+userId:{
+type:mongoose.Schema.Types.objectId,
+ref:"user",
+required:true
+},
+restaurantId:{
+type:mongoose.Schema.Types.objectId,
+ref:"restaurant",
+required:true
+},
+dishesId:{
+type:mongoose.Schema.Types.objectId,
+ref:"dish",
+required:true
+},
+quantity:{type:Number,required:true,min:1}
+totalprice:{type:number,required:true}
+deliverytime:{type:Datetime}
+
+})

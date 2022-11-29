@@ -1,0 +1,24 @@
+// const {EventEmitter} =require("events")
+
+
+// const button=new EventEmitter()
+
+// //listen
+
+// button.on("click" ,()=>{
+//     console.log("button clicked")
+// })
+
+// button.on("masaiClick",()=>{
+//     console.log("button Masai clicked")
+// })
+
+// //emit,trigger,execute,throwup
+
+// setTimeout(()=>{
+//     button.emit("click")
+// },1000)
+
+// setTimeout(()=>{
+//     button.emit("masaiClick")
+// },2000)
